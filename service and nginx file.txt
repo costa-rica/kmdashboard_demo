@@ -1,0 +1,31 @@
+[Unit]
+Description=Gunicorn instance to serve fileShareAppDemo in conda environment
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/environments/fileShareAppDemo
+Environment="PATH=/home/ubuntu/miniconda3/envs/fileShareAppDemo/bin"
+ExecStart=/home/ubuntu/miniconda3/envs/fileShareAppDemo/bin/gunicorn -w 3 -b 0.0.0.0:8001 run:app --timeout 900
+
+[Install]
+WantedBy=multi-user.target
+
+server {
+        listen       80;
+        listen       [::]:80;
+        server_name  demo.kmdashboard.dashanddata.com
+		demo.kmdashboard.dashboardsanddatabases.com;
+
+
+    location /static {
+        alias /home/sanjose/Documents/environments/fileShareAppDemo/fileShareApp/static;
+    }
+
+    location / {
+        proxy_pass http://localhost:8001;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+}
