@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+
+<section class="database_page" id="database_page">
+    <div class="container">
+
+
+<form method="POST" action="" enctype="multipart/form-data">
+    <h4>Backup Dashboard Database in Excel</h4>
+	<ul class= "ul_no_bullets">
+		{% for table in tableNamesList %}
+        <li>
+            <input type="checkbox" id="{{ table }}" name="{{ table }}" value=True>
+            <label for="{{ table }}"> {{ table }}</label><br>
+        </li>
+
+		{% endfor %}
+    </ul>
+
+	<button type="submit" class="btn btn-primary ml-3" name="build_workbook" value=True>Build Workbook</button>
+	<br/>
+	<button type="submit" class="btn btn-primary ml-3" name="download_db_workbook" value=True>Download Workbook</button>
+	<br/>
+
+	{% if current_user.email == 'nickrodriguez@kineticmetrics.com' %}
+	<hr>
+	<h5>Upload data into database</h5>
+	<div style="color: gray"> To upload data to the Kinetic Metrics Dashboard database upload an Excel workbook below. 
+	The workbook should have one table per sheet with all the column names matching the database table columns.
+	Once the file is selected below press 'Upload Excel' and you'll be taken to another screen where you can 
+	link the sheet in the uploaded file to the appropriate database table.</div><br/>
+	
+	Select file type:<br/>
+	<input type="radio" name="file_type" value="excel" > Excel (Upload a database backup)<br/>
+	<input type="radio" name="file_type" value="text" checked=true> Zipped Text File (from <a href="https://www-odi.nhtsa.dot.gov/downloads/">NHTSA ODI</a>)<br/>
+	
+	Select file for upload:<br/>
+	<input type="file" class="form-control" name="fileUpload"/><br/>
+	<button type="submit" class="btn btn-primary" name="uploadFileButton" value=True>Upload File</button><br/>
+	
+
+
+
+
+
+	<hr>
+	<h5>Delete contents in database table</h5>
+	<div style="color: gray"> The link below will take you to a form to delete tables.</div><br/>
+	<a href="{{ url_for('users.database_delete_data') }}"><h5>Clear Database Tables Form</h5></a>
+	{% endif %}
+</form>
+</div>
+</section>
+{% endblock %}

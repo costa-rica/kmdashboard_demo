@@ -1,0 +1,15 @@
+__pycache__/
+*.ipynb
+fileShareApp/__pycache__/
+*.zip
+awsVmSockMethod/
+*log.txt
+investigations_recall_files/
+fileShareApp/static/files/
+database_table.xlsx
+investigation_report.xlsx
+recalls_report.xlsx
+profile_pics/
+screenshots/
+fileShareApp/static/files_database/*.xlsx
+not_for_git/

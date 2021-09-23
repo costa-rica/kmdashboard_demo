@@ -1,0 +1,1 @@
+{"MAKE": ["BUICK", "exact"], "category1": ["", "string_contains"]}
