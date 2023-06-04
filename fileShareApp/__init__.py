@@ -4,10 +4,11 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from fileShareApp.config import Config
-from flask_migrate import Migrate
+# from flask_migrate import Migrate
 
 import logging
 import sys
+
 
 db = SQLAlchemy()
 
@@ -35,6 +36,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+
 
 
     from fileShareApp.inv_blueprint.routes import inv_blueprint

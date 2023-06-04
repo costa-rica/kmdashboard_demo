@@ -23,6 +23,7 @@ from fileShareApp.users.utils import save_picture, send_reset_email, userPermiss
 import openpyxl
 import json
 import zipfile
+from sqlalchemy import inspect
 
 users = Blueprint('users', __name__)
 
@@ -32,6 +33,17 @@ users = Blueprint('users', __name__)
 # @users.route("/", methods=["GET","POST"])
 @login_required
 def home():
+
+    # try:
+    #     if 'user' in inspect(db.engine).get_table_names():
+    #         print("db already exists")
+    # except:
+    # #     Base.metadata.create_all(engine)
+    #     # with app.app_context():
+    #     db.create_all()
+    #     print("NEW db created.")
+
+
     with open(os.path.join(current_app.config['UTILITY_FILES_FOLDER'],'added_users.txt')) as json_file:
         get_users_dict=json.load(json_file)
         json_file.close()

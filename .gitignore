@@ -13,3 +13,4 @@ profile_pics/
 screenshots/
 fileShareApp/static/files_database/*.xlsx
 not_for_git/
+**.DS_Store

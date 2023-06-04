@@ -1,8 +1,8 @@
 import os
 import json
 
-if os.environ.get('COMPUTERNAME')=='CAPTAIN2020':
-    with open(r'D:\OneDrive\Documents\professional\config_files\config_km_dashboard_demo.json') as config_file:
+if os.environ.get('TERM_PROGRAM')=='Apple_Terminal':
+    with open("/Users/nick/Documents/_config_files/config_km_dashboard20221210_mac.json") as config_file:
         config = json.load(config_file)
 elif os.environ.get('USER')=='sanjose':
     with open('/home/sanjose/Documents/environments/config.json') as config_file:
@@ -15,7 +15,7 @@ else:
 
 class Config:
     SECRET_KEY = config.get('SECRET_KEY_DMR')
-    SQLALCHEMY_DATABASE_URI = config.get('SQL_URI_FILESHAREAPP_DEMO')
+    SQLALCHEMY_DATABASE_URI = config.get('SQL_URI')
     MAIL_SERVER = config.get('MAIL_SERVER_GD')
     MAIL_PORT = config.get('MAIL_PORT_GD')
     MAIL_USE_TLS = True
